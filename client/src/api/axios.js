@@ -13,6 +13,7 @@ const api = axios.create({ baseURL: `${BASE}/api` });
 // Restore token on page reload
 const stored = localStorage.getItem('user');
 if (stored) {
+  console.log("Called");
   const { token } = JSON.parse(stored);
   api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 }

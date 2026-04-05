@@ -1,22 +1,22 @@
-require('dotenv').config();
-const express  = require('express');
+require('dotenv').config({ path: '../.env' });
+const express = require('express');
 const mongoose = require('mongoose');
-const cors     = require('cors');
+const cors = require('cors');
 
-const authRoutes   = require('./routes/auth');
+const authRoutes = require('./routes/auth');
 const recordRoutes = require('./routes/records');
 
 const app = express();
 
 /* ── CORS ── */
-const allowedOrigin = process.env.CLIENT_ORIGIN || 'http://localhost:5173';
+const allowedOrigin = process.env.CLIENT_ORIGIN || 'http://localhost:5174';
 app.use(cors({ origin: allowedOrigin, credentials: true }));
 console.log(`CORS accepting: ${allowedOrigin}`);
 
 app.use(express.json());
 
 /* ── API routes ── */
-app.use('/api/auth',    authRoutes);
+app.use('/api/auth', authRoutes);
 app.use('/api/records', recordRoutes);
 
 /* ── Health check (useful on Render) ── */
